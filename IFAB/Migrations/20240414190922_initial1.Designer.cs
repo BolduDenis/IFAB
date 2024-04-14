@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFAB.Migrations
 {
     [DbContext(typeof(IFABDbContext))]
-    [Migration("20240413124433_initial")]
-    partial class initial
+    [Migration("20240414190922_initial1")]
+    partial class initial1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,10 +42,17 @@ namespace IFAB.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("FeedbackId");
+
+                    b.HasIndex("MatchId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Feedbacks");
                 });
@@ -53,7 +60,10 @@ namespace IFAB.Migrations
             modelBuilder.Entity("IFAB.Models.Match", b =>
                 {
                     b.Property<int>("MatchId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MatchId"));
 
                     b.Property<string>("AwayTeam")
                         .HasColumnType("nvarchar(max)");
@@ -168,7 +178,10 @@ namespace IFAB.Migrations
             modelBuilder.Entity("IFAB.Models.User", b =>
                 {
                     b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -196,21 +209,31 @@ namespace IFAB.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("IFAB.Models.Match", b =>
+            modelBuilder.Entity("IFAB.Models.Feedback", b =>
                 {
-                    b.HasOne("IFAB.Models.Feedback", "Feedback")
-                        .WithOne("Match")
-                        .HasForeignKey("IFAB.Models.Match", "MatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("IFAB.Models.Match", "Match")
+                        .WithOne("Feedback")
+                        .HasForeignKey("IFAB.Models.Feedback", "MatchId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("IFAB.Models.User", "User")
+                        .WithOne("Feedback")
+                        .HasForeignKey("IFAB.Models.Feedback", "UserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Match");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("IFAB.Models.Match", b =>
+                {
                     b.HasOne("IFAB.Models.User", "User")
                         .WithMany("Matches")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Feedback");
 
                     b.Navigation("User");
                 });
@@ -220,7 +243,7 @@ namespace IFAB.Migrations
                     b.HasOne("IFAB.Models.Match", "Match")
                         .WithOne("Report")
                         .HasForeignKey("IFAB.Models.MatchReport", "MatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Match");
@@ -245,26 +268,10 @@ namespace IFAB.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("IFAB.Models.User", b =>
-                {
-                    b.HasOne("IFAB.Models.Feedback", "Feedback")
-                        .WithOne("User")
-                        .HasForeignKey("IFAB.Models.User", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Feedback");
-                });
-
-            modelBuilder.Entity("IFAB.Models.Feedback", b =>
-                {
-                    b.Navigation("Match");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("IFAB.Models.Match", b =>
                 {
+                    b.Navigation("Feedback");
+
                     b.Navigation("Recusals");
 
                     b.Navigation("Report");
@@ -272,6 +279,8 @@ namespace IFAB.Migrations
 
             modelBuilder.Entity("IFAB.Models.User", b =>
                 {
+                    b.Navigation("Feedback");
+
                     b.Navigation("Matches");
 
                     b.Navigation("Recusals");
