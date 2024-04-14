@@ -9,13 +9,13 @@ namespace IFAB.Controllers
 {
     public class MatchReportController : Controller
     {
-        public ActionResult Random()
+        public ActionResult ListOfMatches()
         {
             var matchReport = new MatchReport() { MatchId = 1};
             return View(matchReport);
         }
 
-       
+        
     }
 
  }
