@@ -82,17 +82,17 @@ namespace IFAB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReportId"));
 
-                    b.Property<TimeOnly>("DurationBtwRounds")
-                        .HasColumnType("time");
+                    b.Property<int?>("DurationBtwRounds")
+                        .HasColumnType("int");
 
                     b.Property<TimeOnly>("EndTime")
                         .HasColumnType("time");
 
-                    b.Property<int>("FinalScore")
-                        .HasColumnType("int");
+                    b.Property<string>("FinalScore")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HalfTimeScore")
-                        .HasColumnType("int");
+                    b.Property<string>("HalfTimeScore")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MatchId")
                         .HasColumnType("int");

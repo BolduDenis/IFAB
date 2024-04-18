@@ -103,9 +103,9 @@ namespace IFAB.Migrations
                     MatchId = table.Column<int>(type: "int", nullable: false),
                     StartTime = table.Column<TimeOnly>(type: "time", nullable: false),
                     EndTime = table.Column<TimeOnly>(type: "time", nullable: false),
-                    DurationBtwRounds = table.Column<TimeOnly>(type: "time", nullable: false),
-                    HalfTimeScore = table.Column<int>(type: "int", nullable: false),
-                    FinalScore = table.Column<int>(type: "int", nullable: false)
+                    DurationBtwRounds = table.Column<int>(type: "int", nullable: true),
+                    HalfTimeScore = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FinalScore = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
