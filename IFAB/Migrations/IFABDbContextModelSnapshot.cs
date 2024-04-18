@@ -39,16 +39,14 @@ namespace IFAB.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
- feature/add-database-connection
                     b.Property<int?>("UserId")
 
-                    b.Property<int>("UserId")
+                  
 
                         .HasColumnType("int");
 
                     b.HasKey("FeedbackId");
 
- feature/add-database-connection
                     b.HasIndex("MatchId")
                         .IsUnique();
 
@@ -64,14 +62,13 @@ namespace IFAB.Migrations
             modelBuilder.Entity("IFAB.Models.Match", b =>
                 {
                     b.Property<int>("MatchId")
- feature/add-database-connection
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MatchId"));
 
 
-                        .HasColumnType("int");
+                       
 
 
                     b.Property<string>("AwayTeam")
@@ -187,14 +184,9 @@ namespace IFAB.Migrations
             modelBuilder.Entity("IFAB.Models.User", b =>
                 {
                     b.Property<int>("UserId")
-feature/add-database-connection
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));                       
 
 
                     b.Property<string>("Email")
@@ -223,7 +215,7 @@ feature/add-database-connection
                     b.ToTable("Users");
                 });
 
- feature/add-database-connection
+
             modelBuilder.Entity("IFAB.Models.Feedback", b =>
                 {
                     b.HasOne("IFAB.Models.Match", "Match")
@@ -242,9 +234,7 @@ feature/add-database-connection
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("IFAB.Models.Match", b =>
-                {
-                    b.HasOne("IFAB.Models.User", "User")
+
 
             modelBuilder.Entity("IFAB.Models.Match", b =>
                 {
@@ -261,8 +251,6 @@ feature/add-database-connection
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
- feature/add-database-connection
-
                     b.Navigation("Feedback");
 
 
@@ -274,9 +262,7 @@ feature/add-database-connection
                     b.HasOne("IFAB.Models.Match", "Match")
                         .WithOne("Report")
                         .HasForeignKey("IFAB.Models.MatchReport", "MatchId")
- feature/add-database-connection
                         .OnDelete(DeleteBehavior.NoAction)
-
                         .OnDelete(DeleteBehavior.Cascade)
 
                         .IsRequired();
@@ -303,11 +289,7 @@ feature/add-database-connection
                     b.Navigation("User");
                 });
 
-feature/add-database-connection
-            modelBuilder.Entity("IFAB.Models.Match", b =>
-                {
-                    b.Navigation("Feedback");
-
+          
 
             modelBuilder.Entity("IFAB.Models.User", b =>
                 {
@@ -337,7 +319,6 @@ feature/add-database-connection
 
             modelBuilder.Entity("IFAB.Models.User", b =>
                 {
- feature/add-database-connection
                     b.Navigation("Feedback");
 
 

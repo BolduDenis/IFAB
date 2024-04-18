@@ -21,7 +21,6 @@ namespace IFAB.AppDbContext
             modelBuilder.Entity<Feedback>()
                 .HasOne(f => f.Match)
                 .WithOne(m => m.Feedback)
-feature/add-database-connection
                 .HasForeignKey<Feedback>(f => f.MatchId)
                 .OnDelete(DeleteBehavior.NoAction);
 
@@ -29,8 +28,7 @@ feature/add-database-connection
                 .HasOne(f => f.User)
                 .WithOne(m => m.Feedback)
                 .HasForeignKey<Feedback>(f => f.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey<Match>(f => f.MatchId);
 
             modelBuilder.Entity<Feedback>()
@@ -47,11 +45,10 @@ feature/add-database-connection
             modelBuilder.Entity<MatchReport>()
                 .HasOne(r => r.Match)
                 .WithOne(m => m.Report)
-feature/add-database-connection
                 .HasForeignKey<MatchReport>(r => r.MatchId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-                .HasForeignKey<MatchReport>(r => r.MatchId);
+               
 
             modelBuilder.Entity<Recusal>()
                 .HasOne(r => r.Match)

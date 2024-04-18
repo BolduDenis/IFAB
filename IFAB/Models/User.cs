@@ -13,14 +13,10 @@ namespace IFAB.Models
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public string? Role { get; set; }
-feature/add-database-connection
         public List<Match>? Matches { get; set; }
         public List<Recusal>? Recusals { get; set; }
         public Feedback? Feedback { get; set; }  
 
-        public Feedback? Feedback { get; set; }
-        public List<Match>? Matches { get; set; }
-        public List<Recusal>? Recusals { get; set; }
 
     }
 }

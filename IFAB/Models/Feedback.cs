@@ -10,11 +10,7 @@ namespace IFAB.Models
         public Match? Match { get; set; }
         public string? Message { get; set; }
         public int Rating { get; set; }
-
-        public int? UserId { get; set; }
-
         public int UserId { get; set; }
- main
         public User? User { get; set; }
     }
 }
