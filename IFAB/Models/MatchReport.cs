@@ -10,8 +10,8 @@ namespace IFAB.Models
         public Match? Match { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
-        public TimeOnly DurationBtwRounds { get; set; }
-        public int HalfTimeScore { get; set; }
-        public int FinalScore { get; set; }
+        public int? DurationBtwRounds { get; set; }
+        public string? HalfTimeScore { get; set; }
+        public string? FinalScore { get; set; }
     }
 }
