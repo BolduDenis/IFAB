@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IFAB.AppDbContext;
 using IFAB.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IFAB.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly IFABDbContext _context;

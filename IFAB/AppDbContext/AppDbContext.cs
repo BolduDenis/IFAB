@@ -1,9 +1,12 @@
 ﻿using IFAB.Models;
+using IFAB.Models.Auth;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFAB.AppDbContext
 {
-    public class IFABDbContext : DbContext
+    public class IFABDbContext : IdentityDbContext<AppUser>
     {
         public IFABDbContext(DbContextOptions<IFABDbContext> options) : base(options)
         {
@@ -18,12 +21,15 @@ namespace IFAB.AppDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); 
+
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(p => new { p.LoginProvider, p.ProviderKey });
+
             modelBuilder.Entity<Feedback>()
                 .HasOne(f => f.Match)
                 .WithOne(m => m.Feedback)
                 .HasForeignKey<Feedback>(f => f.MatchId)
                 .OnDelete(DeleteBehavior.NoAction);
-
 
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.User)
@@ -36,7 +42,6 @@ namespace IFAB.AppDbContext
                 .WithOne(m => m.Report)
                 .HasForeignKey<MatchReport>(r => r.MatchId)
                 .OnDelete(DeleteBehavior.NoAction);
-
 
             modelBuilder.Entity<Recusal>()
                 .HasOne(r => r.User)
