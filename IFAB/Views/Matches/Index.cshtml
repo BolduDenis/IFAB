@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<IFAB.Models.Match>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Matches";
 }
-
-<h1>Index</h1>
+<body style="background-image: url('/pitchFromTheSky.jpg');">
+    <h1 class="large-text">My matches</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add new match</a>
 </p>
 <table class="table">
     <thead>
@@ -48,12 +48,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AwayTeam)
             </td>
-            <td>
+            @* <td>
                 @Html.DisplayFor(modelItem => item.User.UserId)
-            </td>
-            <td>
+            </td> *@
+            @* <td>
                 @Html.DisplayFor(modelItem => item.Feedback.FeedbackId)
-            </td>
+            </td> *@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MatchId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MatchId">Details</a> |
@@ -63,3 +63,4 @@
 }
     </tbody>
 </table>
+</body>

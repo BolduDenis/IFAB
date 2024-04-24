@@ -51,10 +51,32 @@ body {
 section {
     text-align: center;
     color: white;
-    font-size: 2em;
+    font-size: 8em;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     margin-top: 150px;
+    font-style: normal;
+}
+
+.large-text {
+    text-align: center;
+    color: white;
+    font-size: 3.5em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.medium-text {
+    text-align: center;
+    color: black;
+    font-size: 2em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.small-text {
+    text-align: left;
+    color: white;
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
 }
