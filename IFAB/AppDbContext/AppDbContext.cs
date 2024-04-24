@@ -1,9 +1,12 @@
 ﻿using IFAB.Models;
+using IFAB.Models.Auth;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFAB.AppDbContext
 {
-    public class IFABDbContext : DbContext
+    public class IFABDbContext : IdentityDbContext<AppUser>
     {
         public IFABDbContext(DbContextOptions<IFABDbContext> options) : base(options)
         {
@@ -18,6 +21,10 @@ namespace IFAB.AppDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); 
+
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(p => new { p.LoginProvider, p.ProviderKey });
+
             modelBuilder.Entity<Feedback>()
                 .HasOne(f => f.Match)
                 .WithOne(m => m.Feedback)
@@ -28,13 +35,7 @@ namespace IFAB.AppDbContext
                 .HasOne(f => f.User)
                 .WithOne(m => m.Feedback)
                 .HasForeignKey<Feedback>(f => f.UserId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasForeignKey<Match>(f => f.MatchId);
-
-            modelBuilder.Entity<Feedback>()
-                .HasOne(f => f.User)
-                .WithOne(u => u.Feedback)
-                .HasForeignKey<User>(f => f.UserId);
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.User)
@@ -48,8 +49,7 @@ namespace IFAB.AppDbContext
                 .HasForeignKey<MatchReport>(r => r.MatchId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-               
-
+              
             modelBuilder.Entity<Recusal>()
                 .HasOne(r => r.Match)
                 .WithMany(m => m.Recusals)
