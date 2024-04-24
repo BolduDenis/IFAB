@@ -31,12 +31,6 @@ namespace IFAB.AppDbContext
                 .HasForeignKey<Feedback>(f => f.MatchId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Feedback>()
-                .HasOne(f => f.User)
-                .WithOne(m => m.Feedback)
-                .HasForeignKey<Feedback>(f => f.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.User)
                 .WithMany(u => u.Matches)
@@ -48,13 +42,6 @@ namespace IFAB.AppDbContext
                 .WithOne(m => m.Report)
                 .HasForeignKey<MatchReport>(r => r.MatchId)
                 .OnDelete(DeleteBehavior.NoAction);
-
-              
-            modelBuilder.Entity<Recusal>()
-                .HasOne(r => r.Match)
-                .WithMany(m => m.Recusals)
-                .HasForeignKey(r => r.MatchId)
-                .OnDelete(DeleteBehavior.NoAction); 
 
             modelBuilder.Entity<Recusal>()
                 .HasOne(r => r.User)

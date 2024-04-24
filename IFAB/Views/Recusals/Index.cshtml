@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<IFAB.Models.Recusal>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Recusal";
 }
 
-<h1>Index</h1>
+<body style="background-image: url('/pitchFromTheSky.jpg');">
+    <h1 class="medium-text">Set a time of unavailability</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="small-text">
+    <a asp-action="Create">New</a>
 </p>
 <table class="table">
     <thead>
@@ -36,12 +37,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Unavailability)
             </td>
-            <td>
+            @* <td>
                 @Html.DisplayFor(modelItem => item.Match.MatchId)
-            </td>
-            <td>
+            </td> *@
+          @*   <td>
                 @Html.DisplayFor(modelItem => item.User.UserId)
-            </td>
+            </td> *@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RecusalId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.RecusalId">Details</a> |
@@ -51,3 +52,4 @@
 }
     </tbody>
 </table>
+</body>
