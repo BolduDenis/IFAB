@@ -63,7 +63,14 @@ section {
 .large-text {
     text-align: center;
     color: white;
-    font-size: 3.5em;
+    font-size: 2em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.title-text {
+    text-align: center;
+    color: white;
+    font-size: 4em;
     font-family: 'Open Sans', sans-serif;
 }
 
