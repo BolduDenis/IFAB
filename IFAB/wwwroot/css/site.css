@@ -75,8 +75,8 @@ section {
 }
 
 .medium-text {
-    text-align: center;
-    color: black;
+    text-align: left;
+    color: white;
     font-size: 2em;
     font-family: 'Open Sans', sans-serif;
 }
