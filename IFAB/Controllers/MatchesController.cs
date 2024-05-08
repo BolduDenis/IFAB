@@ -21,6 +21,7 @@ namespace IFAB.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Referee")]
         // GET: Matches
         public async Task<IActionResult> Index()
         {
@@ -28,6 +29,7 @@ namespace IFAB.Controllers
             return View(await iFABDbContext.ToListAsync());
         }
 
+        [Authorize(Roles = "Admin, Referee")]
         // GET: Matches/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,6 +50,7 @@ namespace IFAB.Controllers
             return View(match);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Matches/Create
         public IActionResult Create()
         {
@@ -56,9 +59,9 @@ namespace IFAB.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Matches/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MatchId,Date,Location,HomeTeam,AwayTeam,UserId")] Match match)
@@ -74,6 +77,7 @@ namespace IFAB.Controllers
             return View(match);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Matches/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -92,9 +96,9 @@ namespace IFAB.Controllers
             return View(match);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Matches/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MatchId,Date,Location,HomeTeam,AwayTeam,UserId")] Match match)
@@ -129,6 +133,7 @@ namespace IFAB.Controllers
             return View(match);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Matches/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -149,6 +154,7 @@ namespace IFAB.Controllers
             return View(match);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Matches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

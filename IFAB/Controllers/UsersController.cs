@@ -8,23 +8,28 @@ using Microsoft.EntityFrameworkCore;
 using IFAB.AppDbContext;
 using IFAB.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using IFAB.Models.Auth;
+using IFAB.Constants;
 
 namespace IFAB.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private readonly IFABDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public UsersController(IFABDbContext context)
+        public UsersController(IFABDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var users = await _context.Users.ToListAsync(); 
+            var users = await _context.Users.ToListAsync();
             return View(users);
         }
 
@@ -54,16 +59,35 @@ namespace IFAB.Controllers
 
         // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,Username,Password,Name,League,Email,Phone,Role")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                AppUser appUser = new AppUser
+                {
+                    Name = user.Name,
+                    Email = user.Email,
+                    UserName = user.Username
+                };
+                var result = await _userManager.CreateAsync(appUser, user.Password);
+                var roleAssigment = await _userManager.AddToRoleAsync(appUser, user.Role);
+                if (result.Succeeded && roleAssigment.Succeeded)
+                {
+                    _context.Add(user);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                if (result.Errors is not null)
+                {
+                    ModelState.AddModelError("", result.ToString());
+                }
+                if (roleAssigment.Errors is not null)
+                {
+                    ModelState.AddModelError("", roleAssigment.ToString());
+                }
             }
             ViewData["UserId"] = new SelectList(_context.Feedbacks, "FeedbackId", "FeedbackId", user.UserId);
             return View(user);
@@ -88,7 +112,6 @@ namespace IFAB.Controllers
 
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Password,Name,League,Email,Phone,Role")] User user)
@@ -100,6 +123,18 @@ namespace IFAB.Controllers
 
             if (ModelState.IsValid)
             {
+                var userI = await _userManager.FindByNameAsync(user.Username);
+                userI.UserName = user.Username;
+                userI.Email = user.Email;
+                userI.Name = user.Name;
+
+                var token = await _userManager.GeneratePasswordResetTokenAsync(userI);
+                var result = await _userManager.ResetPasswordAsync(userI, token, user.Password);
+
+                var roles = await _userManager.GetRolesAsync(userI);
+                await _userManager.RemoveFromRolesAsync(userI, roles);
+                await _userManager.AddToRoleAsync(userI, user.Role);
+
                 try
                 {
                     _context.Update(user);
@@ -146,6 +181,8 @@ namespace IFAB.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _context.Users.FindAsync(id);
+            var userI = await _userManager.FindByNameAsync(user.Username);
+            await _userManager.DeleteAsync(userI);
             if (user != null)
             {
                 _context.Users.Remove(user);
