@@ -4,7 +4,7 @@
     ViewData["Title"] = "Matches";
 }
 <body style="background-image: url('/pitchFromTheSky.jpg');">
-    <h1 class="large-text">My matches</h1>
+    <h1 class="title-text">My matches</h1>
 
 <p>
     <a asp-action="Create">Add new match</a>
@@ -12,23 +12,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+                <th class="large-text">
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th>
+                <th class ="large-text">
                 @Html.DisplayNameFor(model => model.Location)
             </th>
-            <th>
+                <th class="large-text">
                 @Html.DisplayNameFor(model => model.HomeTeam)
             </th>
-            <th>
+                <th class="large-text">
                 @Html.DisplayNameFor(model => model.AwayTeam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Feedback)
             </th>
             <th></th>
         </tr>
@@ -54,7 +48,7 @@
             @* <td>
                 @Html.DisplayFor(modelItem => item.Feedback.FeedbackId)
             </td> *@
-            <td>
+                    <td>
                 <a asp-action="Edit" asp-route-id="@item.MatchId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MatchId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.MatchId">Delete</a>

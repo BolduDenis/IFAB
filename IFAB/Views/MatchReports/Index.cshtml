@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Match Reports";
 }
-
-<h1>Match Reports</h1>
+<body style="background-image: url('/pitchFromTheSky.jpg');">
+    <h1 class="title-text">Match Reports</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,22 +12,22 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+                <th class="large-text">
                 @Html.DisplayNameFor(model => model.Match)
-            </th>
-            <th>
+            </th class="large-text">
+            <th class="large-text">
                 @Html.DisplayNameFor(model => model.StartTime)
             </th>
-            <th>
+            <th class="large-text">
                 @Html.DisplayNameFor(model => model.EndTime)
             </th>
-            <th>
+            <th class="large-text">
                 @Html.DisplayNameFor(model => model.DurationBtwRounds)
             </th>
-            <th>
+            <th class="large-text">
                 @Html.DisplayNameFor(model => model.HalfTimeScore)
             </th>
-            <th>
+            <th class="large-text">
                 @Html.DisplayNameFor(model => model.FinalScore)
             </th>
             <th></th>
@@ -63,3 +63,4 @@
 }
     </tbody>
 </table>
+</body>

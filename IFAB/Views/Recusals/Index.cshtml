@@ -5,7 +5,7 @@
 }
 
 <body style="background-image: url('/pitchFromTheSky.jpg');">
-    <h1 class="medium-text">Set a time of unavailability</h1>
+    <h1 class="title-text">Set a time of unavailability</h1>
 
 <p class="small-text">
     <a asp-action="Create">New</a>
@@ -13,16 +13,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+                <th class="large-text">
                 @Html.DisplayNameFor(model => model.Reason)
             </th>
-            <th>
+                <th class="large-text">
                 @Html.DisplayNameFor(model => model.Unavailability)
             </th>
-            <th>
+            <th class="large-text">
                 @Html.DisplayNameFor(model => model.Match)
             </th>
-            <th>
+            <th class="large-text">
                 @Html.DisplayNameFor(model => model.User)
             </th>
             <th></th>
