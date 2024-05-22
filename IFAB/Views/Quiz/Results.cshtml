@@ -1,0 +1,11 @@
+﻿@model IFAB.Models.QuizViewModel
+@{
+    ViewData["Title"] = "Quiz Result";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>You answered @ViewBag.Score questions correctly out of @ViewBag.Total.</p>
+<p>You made @(@ViewBag.Total - ViewBag.Score) mistakes</p>
+
+<a href="@Url.Action("Index", "Quiz")">Try again</a>
