@@ -16,10 +16,10 @@ namespace IFAB.Controllers
                 {
 
                     new Questions { Text = "What happens if a goalkeeper handles a backpass?", Answer = "" },
-                    new Questions { Text = "What are the correct goal dimensions?", Answer = "7.32 x 2.44" },
-                    new Questions { Text = "All players must wear...", Answer = "Studden boots, shin guards and numbered shirts." },
-                    new Questions { Text = "What happens if a defender player plays the ball with the hand in the penalty area?", Answer = "Penalty kick" },
-                    new Questions { Text = "What is the disciplinary sanction for a coach who is entering the field of play in an agressive manner?", Answer = "Red Card" },
+                    new Questions { Text = "What are the correct goal dimensions?", Answer = "" },
+                    new Questions { Text = "All players must wear...", Answer = "" },
+                    new Questions { Text = "What happens if a defender player plays the ball with the hand in the penalty area?", Answer = "" },
+                    new Questions { Text = "What is the disciplinary sanction for a coach who is entering the field of play in an agressive manner?", Answer = "" },
                 }
             };
             var viewModel = quizViewModel;

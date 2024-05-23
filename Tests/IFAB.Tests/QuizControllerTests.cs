@@ -21,7 +21,7 @@ namespace IFAB.Tests
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<List<Questions>>(viewResult.ViewData.Model);    
-            Assert.Equal(3, model.Count);
+            Assert.Equal(5, model.Count);
         }
 
         //[Fact]
