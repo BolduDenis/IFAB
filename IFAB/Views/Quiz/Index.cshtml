@@ -1,0 +1,20 @@
+﻿ @* @model List<IFAB.Models.Questions> *@
+@model IFAB.Models.QuizViewModel
+
+<h1 class=" mb-4">Quiz</h1>
+<div class=" card">
+    <div class="card-body">
+        <form asp-action="Submit" asp-controller="Quiz">
+
+            @for (int i =0; i< Model.Questions.Count; i++)
+                {
+                    <div class="mb-3">
+                    <label class="form-label">@Model.Questions[i].Text</label>
+                    <input class="form-control" asp-for="@Model.Questions[i].Answer" />
+                    </div>
+                }
+
+    <button type="submit" class="btn btn-primary">Finish quiz</button>
+</form>
+</div>
+</div>
