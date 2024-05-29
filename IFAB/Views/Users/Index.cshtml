@@ -13,71 +13,93 @@
         padding: 20px;
         display: inline-block;
     }
+
+    .edit-button, .details-button, .delete-button {
+        padding: 1px;
+        text-declaration-line: none;
+        border-radius: 0px;
+    }
+
+    .delete-button {
+        background-color: red;
+        color: white;
+    }
+
+    .details-button {
+        background-color: blue;
+        color: white;
+    }
+
+    .edit-button {
+        background-color: green;
+        color: white;
+    }
 </style>
 <body style="background-image: url('/pitchFromTheSky.jpg');">
-<h1 class="title-text">Users</h1>
+    <h1 class="title-text">Users</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table text-background">
-    <thead>
-        <tr>
+    <p>
+        <a asp-action="Create" class="edit-button">Create New</a>
+    </p>
+    <table class="table text-background">
+        <thead>
+            <tr>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-                <th class ="large-text">
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.League)
-            </th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
+                    @Html.DisplayNameFor(model => model.League)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.League)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th class="large-text">
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.League)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.UserId" class="edit-button">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.UserId" class="details-button">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.UserId" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>

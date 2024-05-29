@@ -13,53 +13,75 @@
         padding: 20px;
         display: inline-block;
     }
+
+    .edit-button, .details-button, .delete-button {
+        padding: 1px;
+        text-declaration-line: none;
+        border-radius: 0px;
+    }
+
+    .delete-button {
+        background-color: red;
+        color: white;
+    }
+
+    .details-button {
+        background-color: blue;
+        color: white;
+    }
+
+    .edit-button {
+        background-color: green;
+        color: white;
+    }
 </style>
 <body style="background-image: url('/pitchFromTheSky.jpg');">
     <h1 class="title-text">Set a time of unavailability</h1>
 
-<p class="small-text">
-    <a asp-action="Create">New</a>
-</p>
-<table class="table text-background">
-    <thead>
-        <tr>
+    <p class="small-text">
+        <a asp-action="Create" class="edit-button">New</a>
+    </p>
+    <table class="table text-background">
+        <thead>
+            <tr>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Reason)
-            </th>
+                    @Html.DisplayNameFor(model => model.Reason)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Unavailability)
-            </th>
-            <th class="large-text">
-                @Html.DisplayNameFor(model => model.Match)
-            </th>
-            <th class="large-text">
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reason)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Unavailability)
-            </td>
-            @* <td>
+                    @Html.DisplayNameFor(model => model.Unavailability)
+                </th>
+                <th class="large-text">
+                    @Html.DisplayNameFor(model => model.Match)
+                </th>
+                <th class="large-text">
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reason)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unavailability)
+                    </td>
+                    @* <td>
                 @Html.DisplayFor(modelItem => item.Match.MatchId)
-            </td> *@
-          @*   <td>
+                </td> *@
+                    @*   <td>
                 @Html.DisplayFor(modelItem => item.User.UserId)
-            </td> *@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RecusalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RecusalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RecusalId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                </td> *@
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.RecusalId" class="edit-button">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.RecusalId" class="details-button">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.RecusalId" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>

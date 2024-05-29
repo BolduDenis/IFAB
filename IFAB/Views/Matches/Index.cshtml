@@ -6,7 +6,7 @@
 
 <style>
     body {
-        padding-top:70px;
+        padding-top: 70px;
     }
 
     .text-background {
@@ -14,59 +14,82 @@
         padding: 20px;
         display: inline-block;
     }
+
+    .edit-button, .details-button, .delete-button {
+        padding: 1px;
+        text-declaration-line: none;
+        border-radius: 0px;
+    }
+
+    .delete-button {
+        background-color: red;
+        color: white;
+    }
+
+    .details-button {
+        background-color: blue;
+        color: white;
+    }
+
+    .edit-button {
+        background-color: green;
+        color: white;
+    }
+
 </style>
 <body style="background-image: url('/pitchFromTheSky.jpg')">
     <h1 class="title-text background-with-opacity-50">My matches</h1>
 
-<p>
-    <a asp-action="Create">Add new match</a>
-</p>
+    <p>
+        <a asp-action="Create" class="edit-button">Add new match</a>
+    </p>
     <table class="table text-background">
-    <thead>
-        <tr>
+        <thead>
+            <tr>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-                <th class ="large-text">
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.HomeTeam)
-            </th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
                 <th class="large-text">
-                @Html.DisplayNameFor(model => model.AwayTeam)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeTeam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AwayTeam)
-            </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.User.UserId)
-            </td> *@
-            @* <td>
-                @Html.DisplayFor(modelItem => item.Feedback.FeedbackId)
-            </td> *@
+                    @Html.DisplayNameFor(model => model.HomeTeam)
+                </th>
+                <th class="large-text">
+                    @Html.DisplayNameFor(model => model.AwayTeam)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
                     <td>
-                <a asp-action="Edit" asp-route-id="@item.MatchId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MatchId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MatchId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HomeTeam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AwayTeam)
+                    </td>
+                    @* <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+                </td> *@
+                    @* <td>
+                @Html.DisplayFor(modelItem => item.Feedback.FeedbackId)
+                </td> *@
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MatchId" class="edit-button">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.MatchId" class="details-button">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.MatchId" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>
