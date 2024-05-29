@@ -46,3 +46,15 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+.top-left-nav{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    width:100%;
+}
+
+.background-with-opacity-50 {
+    background-color: rgb(95, 185, 131, 0.5);
+}

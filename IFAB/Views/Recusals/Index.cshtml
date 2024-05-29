@@ -3,14 +3,24 @@
 @{
     ViewData["Title"] = "Recusal";
 }
+<style>
+    body {
+        padding-top: 70px;
+    }
 
+    .text-background {
+        background-color: rgba(95,185,131,0.5);
+        padding: 20px;
+        display: inline-block;
+    }
+</style>
 <body style="background-image: url('/pitchFromTheSky.jpg');">
     <h1 class="title-text">Set a time of unavailability</h1>
 
 <p class="small-text">
     <a asp-action="Create">New</a>
 </p>
-<table class="table">
+<table class="table text-background">
     <thead>
         <tr>
                 <th class="large-text">

@@ -30,7 +30,7 @@ namespace IFAB.Controllers
         [HttpPost]
         public IActionResult Submit(QuizViewModel viewModel)
         {
-            var correctAnswers = new List<string> { "Indirect free kick", "7.32 x 2.44", "Studden boots, shin guards and numbered shirts.", "Penalty kick", "Red Card" };
+            var correctAnswers = new List<string> { "Indirect free kick", "7.32 x 2.44", "Studden boots, shin guards and numbered shirts", "Penalty kick", "Red Card" };
             int score = 0;
 
             for (int i = 0; i < viewModel.Questions.Count; i++)

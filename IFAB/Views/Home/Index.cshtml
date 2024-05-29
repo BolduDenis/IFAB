@@ -1,27 +1,87 @@
-﻿@* @{
+﻿@{
+
     ViewData["Title"] = "Home Page";
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
- *@
+ 
 
- @{
-    ViewData["Title"] = "Home Page";
-}
 <!DOCTYPE html>
+
 <html>
 
-<body style="background-image: url('/Home.jpg');">
+ 
+
+<head>
+
+    <style>
+
+        body {
+
+            background-image: url('/Home.jpg');
+
+            background-size: cover;
+
+            background-position: center;
+
+            height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0;
+
+            color: white;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+ 
+
+        h1 {
+
+            font-size: 0.5em;
+
+            text-align: center;
+
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+            line-height: 1.4;
+
+            margin-top: 50px;
+
+        }
+
+    </style>
+
+</head>
+
+ 
+
+<body>
+
     <section>
-        <h1>BE IN TOUCH <br> WITH THE LATEST <br>MATCHES</h1> 
+
+        <h1>BE IN TOUCH <br> WITH THE LATEST <br>MATCHES</h1>
+
     </section>
+
 </body>
 
+ 
+
 <ItemGroup>
+
     <None Include="wwwroot\Home.jpg" CopyToOutputDirectory="Always" />
+
 </ItemGroup>
 
+ 
+
 </html>
+
+ 
