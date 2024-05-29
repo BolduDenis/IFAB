@@ -12,13 +12,30 @@
         padding: 20px;
         display:inline-block;
     }
+    .edit-button, .details-button, .delete-button{
+        padding:1px;
+        text-declaration-line: none;
+        border-radius: 0px;
+    }
+    .delete-button{
+        background-color: red;
+        color:white;
+    }
+    .details-button{
+        background-color: blue;
+        color: white;
+    }
+    .edit-button{
+        background-color: green;
+        color: white;
+    }
 
 </style>
 <body style="background-image: url('/pitchFromTheSky.jpg');">
     <h1 class="title-text">Match Reports</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="edit-button">Create New</a>
 </p>
 <table class="table text-background">
     <thead>
@@ -66,9 +83,9 @@
                 @Html.DisplayFor(modelItem => item.FinalScore)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ReportId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReportId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReportId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ReportId" class="edit-button">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReportId" class="details-button">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReportId" class="delete-button">Delete</a>
             </td>
         </tr>
 }

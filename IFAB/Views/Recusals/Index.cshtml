@@ -13,12 +13,33 @@
         padding: 20px;
         display: inline-block;
     }
+
+    .edit-button, .details-button, .delete-button {
+        padding: 1px;
+        text-declaration-line: none;
+        border-radius: 0px;
+    }
+
+    .delete-button {
+        background-color: red;
+        color: white;
+    }
+
+    .details-button {
+        background-color: blue;
+        color: white;
+    }
+
+    .edit-button {
+        background-color: green;
+        color: white;
+    }
 </style>
 <body style="background-image: url('/pitchFromTheSky.jpg');">
     <h1 class="title-text">Set a time of unavailability</h1>
 
 <p class="small-text">
-    <a asp-action="Create">New</a>
+    <a asp-action="Create" class="edit-button">New</a>
 </p>
 <table class="table text-background">
     <thead>
@@ -54,9 +75,9 @@
                 @Html.DisplayFor(modelItem => item.User.UserId)
             </td> *@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RecusalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RecusalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RecusalId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.RecusalId" class="edit-button">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RecusalId" class="details-button">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RecusalId" class="delete-button">Delete</a>
             </td>
         </tr>
 }
