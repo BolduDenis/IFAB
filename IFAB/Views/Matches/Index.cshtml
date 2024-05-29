@@ -3,13 +3,25 @@
 @{
     ViewData["Title"] = "Matches";
 }
-<body style="background-image: url('/pitchFromTheSky.jpg');">
-    <h1 class="title-text">My matches</h1>
+
+<style>
+    body {
+        padding-top:70px;
+    }
+
+    .text-background {
+        background-color: rgba(95,185,131,0.5);
+        padding: 20px;
+        display: inline-block;
+    }
+</style>
+<body style="background-image: url('/pitchFromTheSky.jpg')">
+    <h1 class="title-text background-with-opacity-50">My matches</h1>
 
 <p>
     <a asp-action="Create">Add new match</a>
 </p>
-<table class="table">
+    <table class="table text-background">
     <thead>
         <tr>
                 <th class="large-text">
